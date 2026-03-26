@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Abhishek Saini — System Administrator</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f1c2e;
+    --paper: #eef4fb;
+    --accent: #1a6fbf;
+    --accent2: #2a9fd6;
+    --muted: #5a7a99;
+    --line: #c2d8ee;
+    --tag-bg: #daeaf7;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Animated entrance */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .animate { animation: fadeUp .55s ease both; }
+  .d1 { animation-delay: .05s; }
+  .d2 { animation-delay: .15s; }
+  .d3 { animation-delay: .25s; }
+  .d4 { animation-delay: .35s; }
+  .d5 { animation-delay: .45s; }
+  .d6 { animation-delay: .55s; }
+
+  /* ─── PAGE WRAPPER ─────────────────────────────── */
+  .page {
+    max-width: 860px;
+    margin: 40px auto;
+    background: #fff;
+    box-shadow: 0 8px 60px rgba(0,0,0,.12);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ─── LEFT ACCENT BAR ───────────────────────────── */
+  .page::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 6px;
+    background: linear-gradient(180deg, #5ec7f0 0%, #1a6fbf 50%, #0d1f38 100%);
+  }
+
+  /* ─── HEADER ─────────────────────────────────────── */
+  .header {
+    padding: 48px 52px 36px 52px;
+    background: linear-gradient(135deg, #0d1f38 0%, #0f2d52 60%, #0e3a6a 100%);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Diagonal stripe texture */
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 320px; height: 320px;
+    border: 60px solid rgba(42,159,214,.1);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+  }
+
+  .name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    letter-spacing: 3px;
+    line-height: 1;
+    color: #fff;
+  }
+
+  .name span {
+    color: #5ec7f0;
+  }
+
+  .title-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+    margin-top: 8px;
+  }
+
+  .contact-block {
+    text-align: right;
+    font-size: 12px;
+    color: rgba(255,255,255,.7);
+    line-height: 1.9;
+  }
+
+  .contact-block div {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  .contact-block a {
+    color: rgba(255,255,255,.7);
+    text-decoration: none;
+  }
+
+  .contact-block span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    flex-shrink: 0;
+    color: #5ec7f0;
+  }
+
+  /* Certs strip */
+  .cert-strip {
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .cert-pill {
+    background: rgba(42,159,214,.18);
+    border: 1px solid rgba(42,159,214,.45);
+    color: #a8daf5;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+
+  /* ─── BODY LAYOUT ────────────────────────────────── */
+  .body {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    padding: 0;
+  }
+
+  /* ─── MAIN COLUMN ────────────────────────────────── */
+  .main {
+    padding: 40px 44px 40px 52px;
+    border-right: 1px solid var(--line);
+  }
+
+  /* ─── SIDEBAR ────────────────────────────────────── */
+  .sidebar {
+    padding: 40px 32px 40px 28px;
+    background: var(--paper);
+  }
+
+  /* ─── SECTION HEADS ──────────────────────────────── */
+  .section { margin-bottom: 36px; }
+
+  .section-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 3.5px;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    opacity: .3;
+  }
+
+  /* ─── JOB ENTRIES ────────────────────────────────── */
+  .job { margin-bottom: 28px; }
+
+  .job-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+
+  .job-title {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--ink);
+    letter-spacing: .3px;
+  }
+
+  .job-company {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent2);
+    font-weight: 500;
+    letter-spacing: .5px;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .job-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    background: var(--tag-bg);
+    padding: 3px 8px;
+    border-radius: 2px;
+  }
+
+  .job ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .job ul li {
+    padding-left: 14px;
+    position: relative;
+    color: #444;
+    margin-bottom: 4px;
+    font-size: 12.5px;
+    line-height: 1.55;
+  }
+
+  .job ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent2);
+    font-size: 10px;
+    top: 1px;
+  }
+
+  /* ─── SIDEBAR SECTIONS ───────────────────────────── */
+  .side-section { margin-bottom: 32px; }
+
+  .side-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 12px;
+    letter-spacing: 3px;
+    color: var(--accent2);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  /* Skills */
+  .skill-group { margin-bottom: 14px; }
+
+  .skill-group-name {
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 3px 8px;
+    border-radius: 2px;
+    letter-spacing: .3px;
+    transition: background .2s;
+  }
+
+  .tag:hover {
+    background: var(--accent);
+    color: #fff;
+    cursor: default;
+  }
+
+  /* Education */
+  .edu-item { margin-bottom: 16px; }
+
+  .edu-degree {
+    font-weight: 500;
+    font-size: 12.5px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .edu-institute {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .edu-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .edu-year, .edu-score {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: #fff;
+    padding: 2px 7px;
+    border-radius: 2px;
+  }
+
+  .edu-year { background: #1a6fbf; }
+  .edu-score { background: #2a9fd6; }
+
+  /* Trait list */
+  .traits { list-style: none; }
+
+  .traits li {
+    font-size: 12px;
+    color: #555;
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--line);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .traits li::before {
+    content: '✦';
+    color: var(--accent2);
+    font-size: 8px;
+    flex-shrink: 0;
+  }
+
+  /* ─── PRINT ──────────────────────────────────────── */
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; max-width: 100%; }
+    .animate { animation: none !important; opacity: 1 !important; transform: none !important; }
+  }
+
+  @media (max-width: 680px) {
+    .body { grid-template-columns: 1fr; }
+    .sidebar { border-top: 1px solid var(--line); }
+    .main { padding: 32px 28px; }
+    .header { padding: 36px 28px 28px; }
+    .name { font-size: 52px; }
+    .header-top { flex-direction: column; align-items: flex-start; }
+    .contact-block { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ── HEADER ─────────────────────────── -->
+  <header class="header animate d1">
+    <div class="header-top">
+      <div>
+        <div class="name">ABHISHEK <span>SAINI</span></div>
+        <div class="title-badge">IT Manager &nbsp;·&nbsp; System Administrator &nbsp;·&nbsp; IT Infrastructure Specialist</div>
+      </div>
+      <div class="contact-block">
+        <div><span>☎</span>+91-869-922-4393</div>
+        <div><span>✉</span><a href="mailto:abhisaini777@gmail.com">abhisaini777@gmail.com</a></div>
+        <div><span>📍</span>Chandigarh, India</div>
+      </div>
+    </div>
+    <div class="cert-strip">
+      <div class="cert-pill">SC-900 Certified</div>
+      <div class="cert-pill">AZ-900 Certified</div>
+      <div class="cert-pill">7+ Years Experience</div>
+    </div>
+  </header>
+
+  <!-- ── BODY ───────────────────────────── -->
+  <div class="body">
+
+    <!-- MAIN -->
+    <main class="main">
+
+      <!-- Experience -->
+      <section class="section animate d2">
+        <div class="section-label">Professional Experience</div>
+
+        <!-- Job 1 -->
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <div class="job-title">IT Manager / System Administrator</div>
+              <div class="job-company">Alaric Ventures Pvt. Ltd. · Chandigarh</div>
+            </div>
+            <div class="job-date">JAN 2022 – PRESENT</div>
+          </div>
+          <ul>
+            <li>Windows Server 2008/2012/2016 installation, configuration &amp; ongoing maintenance.</li>
+            <li>Active Directory administration — Group Policy, DNS, DHCP, FSMO roles &amp; domain management.</li>
+            <li>Office 365 full stack: user management, mailbox/DL management, mail flow, PST import/export.</li>
+            <li>Azure: VM provisioning, resource &amp; disk allocation, Azure AD user management, VD access &amp; domain management.</li>
+            <li>Employee onboarding/offboarding — access provisioning and revocation per role and designation.</li>
+            <li>MFA administration across Duo, RSA &amp; Azure MFA; client VPN installation and support.</li>
+            <li>Client product support: LiveVox, Latitude, VDI, FACS, Badges.</li>
+            <li>PSA platforms: Manage Engine, ConnectWise, Autotask, Track-IT.</li>
+            <li>Played a key role in achieving <strong>ISO 9001 &amp; ISO 27001</strong> certifications, contributing across IT controls, documentation, and audit readiness.</li>
+            <li>Led and supported <strong>NIST Cybersecurity Framework</strong> audit activities, ensuring compliance with security standards and reinforcing the organization's overall security posture.</li>
+            <li>Executed an organisation-wide <strong>BitLocker encryption</strong> deployment and migration, significantly strengthening endpoint data security and regulatory compliance.</li>
+            <li>Spearheaded endpoint security migration from <strong>SOPHOS to SentinelOne</strong>, improving threat detection capabilities and overall system performance.</li>
+            <li>Served as primary <strong>POC for critical incidents and escalations</strong> — ensuring swift resolution, strict SLA adherence, and minimal operational downtime.</li>
+            <li>Client communications — incident progress updates, change notifications, and coordinating planned outages.</li>
+          </ul>
+        </div>
+
+        <!-- Job 2 (new) -->
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <div class="job-title">IT Helpdesk Technician</div>
+              <div class="job-company">Microware Computing &amp; Consulting Pvt. Ltd. · Gurgaon</div>
+            </div>
+            <div class="job-date">AUG 2020 – JAN 2022</div>
+          </div>
+          <ul>
+            <li>Served as the <strong>first point of contact</strong> for new hire onboarding — coordinating system setup, access provisioning, and initial workstation training.</li>
+            <li>Managed end-to-end employee offboarding, ensuring timely access revocation in line with security policies.</li>
+            <li>Office 365 administration: user &amp; mailbox management, DL management, mailbox permissions, and mail flow configuration.</li>
+            <li>Active Directory user administration — account creation, modification, and group policy management.</li>
+            <li>Managed client-facing platforms including FACS and physical access Badge systems.</li>
+            <li>Diagnosed and resolved core infrastructure issues across desktop, network connectivity, and application support.</li>
+            <li>Delivered remote and on-site end-user support on Windows PCs and Macintosh platforms.</li>
+            <li>Maintained clear system documentation and communicated incident updates to stakeholders throughout resolution.</li>
+          </ul>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <div class="job-title">Specialist — IT Service Desk (L2)</div>
+              <div class="job-company">HCL Technologies · Noida</div>
+            </div>
+            <div class="job-date">JUN 2018 – AUG 2020</div>
+          </div>
+          <ul>
+            <li>Owned incidents end-to-end, acting as professional liaison between users and IT service provider.</li>
+            <li>Second-level remote support for desktops, laptops, smartphones &amp; tablets.</li>
+            <li>Microsoft Exchange / O365: mailboxes, DLs, permissions, quotas, Outlook troubleshooting, PST backup.</li>
+            <li>OS deployment, Azure AD domain-join processes.</li>
+            <li>Service management via ServiceNow (SNOW).</li>
+          </ul>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="job">
+          <div class="job-header">
+            <div>
+              <div class="job-title">Technical Support Engineer</div>
+              <div class="job-company">Infimum Consulting Pvt. Ltd. · Chandigarh</div>
+            </div>
+            <div class="job-date">JUL 2016 – MAY 2018</div>
+          </div>
+          <ul>
+            <li>Diagnosed hardware, software &amp; network issues; delivered efficient remote resolutions.</li>
+            <li>Resolved virus, malware &amp; adware incidents; managed antivirus deployments (AVG, Avast, McAfee, Norton).</li>
+            <li>Windows installation, restoration &amp; updates; Microsoft Office support &amp; email issue resolution.</li>
+          </ul>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <!-- Technical Skills -->
+      <div class="side-section animate d3">
+        <div class="side-label">Technical Skills</div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Microsoft Cloud</div>
+          <div class="tags">
+            <span class="tag">Azure AD</span>
+            <span class="tag">Office 365</span>
+            <span class="tag">Exchange</span>
+            <span class="tag">Azure VM</span>
+            <span class="tag">Azure VD</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Infrastructure</div>
+          <div class="tags">
+            <span class="tag">Active Directory</span>
+            <span class="tag">DNS</span>
+            <span class="tag">DHCP</span>
+            <span class="tag">FSMO Roles</span>
+            <span class="tag">Group Policy</span>
+            <span class="tag">Domain Controller</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Virtualisation</div>
+          <div class="tags">
+            <span class="tag">VMware</span>
+            <span class="tag">Azure VMs</span>
+            <span class="tag">VDI</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Security &amp; Auth</div>
+          <div class="tags">
+            <span class="tag">MFA</span>
+            <span class="tag">Duo</span>
+            <span class="tag">RSA</span>
+            <span class="tag">Client VPN</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">ITSM &amp; PSA</div>
+          <div class="tags">
+            <span class="tag">ServiceNow</span>
+            <span class="tag">ConnectWise</span>
+            <span class="tag">Manage Engine</span>
+            <span class="tag">Autotask</span>
+            <span class="tag">Track-IT</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-name">Platforms</div>
+          <div class="tags">
+            <span class="tag">Windows Server</span>
+            <span class="tag">macOS</span>
+            <span class="tag">Windows 10/11</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div class="side-section animate d4">
+        <div class="side-label">Education</div>
+
+        <div class="edu-item">
+          <div class="edu-degree">B.Tech — Computer Science Engineering</div>
+          <div class="edu-institute">Sri Sukhmani College of Engg. &amp; Tech.<br>Punjab Technical University</div>
+          <div class="edu-meta">
+            <span class="edu-year">2016</span>
+            <span class="edu-score">70%</span>
+          </div>
+        </div>
+
+        <div class="edu-item">
+          <div class="edu-degree">Diploma — Computer Science Engineering</div>
+          <div class="edu-institute">Swami Parmanand College of Engg. &amp; Tech.<br>PSBTE &amp; IT</div>
+          <div class="edu-meta">
+            <span class="edu-year">2013</span>
+            <span class="edu-score">65%</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="side-section animate d5">
+        <div class="side-label">Certifications</div>
+        <div class="tags" style="flex-direction:column; gap:7px;">
+          <span class="tag" style="padding:7px 10px; font-size:11px;">🏅 Microsoft SC-900<br><span style="opacity:.6; font-size:9.5px;">Security, Compliance &amp; Identity</span></span>
+          <span class="tag" style="padding:7px 10px; font-size:11px;">🏅 Microsoft AZ-900<br><span style="opacity:.6; font-size:9.5px;">Azure Fundamentals</span></span>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div class="side-section animate d6">
+        <div class="side-label">Profile</div>
+        <ul class="traits">
+          <li>Quick learner, passionate about technology</li>
+          <li>Highly confident with a vision for excellence</li>
+          <li>Strong communication &amp; coordination</li>
+          <li>Efficient at solving technical &amp; non-technical issues</li>
+          <li>Patient under pressure</li>
+        </ul>
+      </div>
+
+    </aside>
+  </div>
+
+</div>
+
+</body>
+</html>
